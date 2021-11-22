@@ -1,0 +1,360 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- ლოგო და ემბლება 1-ლი ჯგუფი -->
+<div class="container">
+  <div class="jumbotron" style="padding: 30px;">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{% static 'images/shoes_main.png' %}" alt="" style="width: 100%;">
+      </div>
+      <div class="col-md-8">
+        <div style="text-align: center">
+          <img src="{% static 'images/complogo.png' %}" alt="" style="width: 25%; padding-top: 10px;">
+          <p style="padding-top: 40px;">
+            MEN SHOES 49 $
+          </p>
+          <button class="btn-warning">ADD TO CARD <i class="fas fa-shopping-cart"></i>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- გაყიდვები მთავარი 8 ცალი მე-2 ჯგუფი -->
+  <!-- <div class="container"> -->
+  <div class="row">
+    {% for item in list %}
+    <div class="col-md-3">
+      <div class="gcard">
+          <a href="{{ item.get_url }}">
+            <div class="gimage">
+
+              <img src="{{ item.images.url }}" style="height: 250px;" alt="">
+            </div>
+        </a>
+          <p style="padding-top:20px; padding-bottom: 0px;">{{item.product_name}} - <b>{{ item.price }} $</b></p>
+          <button class="giobtn">ADD TO CARD <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- ახალი კოლექცია მე-3 ჯგუფი -->
+  <div class="jumbotron" style="padding: 20px 40px;">
+    <div class="row">
+      <div class="col-md-5">
+        <img src="{% static 'images/buchq.png' %}" alt="" style="width: 100%; padding: 0;">
+      </div>
+      <div class="col-md-7">
+        <div style="text-align: center">
+          <h3 style="padding-top:80px; padding-bottom: 30px;">NEW COLLECTIONS</h3>
+          <a href="#">
+            <h5>
+              see more
+            </h5>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ფასდაკლებები მე-4 ჯგუფი -->
+  <div class="row">
+    <div class="col-md-3">
+      <div class="mainsalecard">
+        <img class="img-fluid" src="{% static 'images/p0.png' %}" style="width: 100%;" alt="gggg">
+        <button class="salebtn">SALE</button>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <!-- <div class="container"> -->
+      <div class="row">
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" src="{% static 'images/p1.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" class="img-fluid" src="{% static 'images/p2.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" src="{% static 'images/p3.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" src="{% static 'images/p4.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" src="{% static 'images/p5.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" src="{% static 'images/p6.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" src="{% static 'images/p7.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="salecard">
+            <img class="img-fluid" src="{% static 'images/p8.png' %}" alt="">
+            <p style="padding-top:20px; padding-bottom: 0px;">LOREM IPS 4 $</p>
+            <span class="saleblack">
+              10% OFF
+            </span>
+            <button class="giobtn">ADD TO CARD
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <button class="giobtn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- პოპულარული მე-5 ჯგუფი -->
+
+  <h4 style="margin-top: 40px;">MOST POPULAR</h4>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="popular1 bg-light">
+        <div class="row">
+          <div class="col-md-4" style="padding-right: 0;">
+            <img src="{% static 'images/pop1.png' %}" style="height:300px;" alt="">
+          </div>
+          <div class="col-md-8">
+            <div class="d-flex flex-column justify-content-end align-items-center" style="height:100%">
+              <div>
+                <h4>
+                  LOREM IPSUM
+                </h4>
+              </div>
+              <div class="p-5">
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="popular2">
+        <div class="row">
+          <div class="col-md-4" style="padding-right: 0;">
+            <img src="{% static 'images/pop2_1.png' %}" style="height:300px;" alt="">
+          </div>
+          <div class="col-md-3 ml-auto" style="padding: 0;">
+            <img src="{% static 'images/pop2_2.png' %}" style="height:230px;" alt="">
+            <span class="rounded-circle">10%</span>
+
+          </div>
+          <div class="col-md-5" style="padding-left: 0;">
+            <div class="d-flex flex-column justify-content-end align-items-center" style="height:100%">
+              <div>
+                <h4>
+                  LOREM IPSUM
+                </h4>
+              </div>
+              <div class="p-5">
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-6">
+      <div class="popular3">
+        <div class="row">
+          <div class="col-md-4" style="padding-right: 0;">
+            <img src="{% static 'images/pop3.png' %}" style="height:300px;" alt="">
+          </div>
+          <div class="col-md-8">
+            <div class="d-flex flex-column justify-content-end align-items-center" style="height:100%">
+              <div>
+                <h4>
+                  LOREM IPSUM
+                </h4>
+              </div>
+              <div class="p-5">
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="fas fa-star text-danger"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-6 has-bg-image">
+      <div class="bg-image d-flex gimage">
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column justify-content-center" style="height:100%">
+              <div>
+                <h3>SUPER</h3>
+              </div>
+              <div>
+                <h2>DISCOUNT</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex align-items-center" style="height:100%">
+              <h1 style="font-size: 80px;">
+                45%
+              </h1>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- <div class="popular4" style="padding-right: 0;"> -->
+
+    </div>
+    <div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- ჩატი იწყება აქედან  -->
+
+  <div class="d-flex justify-content-end">
+
+    <div class="btn btn-warning livechat justify-content-end" type="submit">
+      <h3>
+        Live Chat
+      </h3>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+
+<!-- ფუთერი, ბოლო -->
+<div class="container-fluid">
+
+</div>
+{% endblock %}

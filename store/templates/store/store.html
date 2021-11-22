@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-2">
+
+            <h3>
+                Categories
+            </h3>
+
+            <ul>
+                <li>
+                    <a href="{% url 'store' %}">
+                        All products
+                    </a>
+                </li>
+                {% for item in cat_links %}
+                <li>
+                    <a href="{{ item.get_url }}">
+                        {{ item.category_name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <!-- მეორე სვეტი, სადაც მოთავსებულია მთელი პროდუქცია -->
+        <div class="col-10">
+            {% if 'search' in request.path %}
+            <h5 class="text-danger">
+                Search Result!
+            </h5>
+            {% else %}
+            <h5>
+                Our Store!
+            </h5>
+            {% endif %}
+            
+            <hr>
+            <h6>
+                Found {{ count }} items.
+            </h6>
+            <hr>
+            <div class="row">
+                {% for item in list %}
+                <div class="col-md-3">
+                    <div class="gcard">
+                        <a href="{{ item.get_url }}">
+                            <img src="{{ item.images.url }}" style="width: 100%; height: 250px;" alt="">
+                            <p style="padding-top:20px; padding-bottom: 0px;">{{item.product_name}} - <b>{{ item.price}} $</b>
+                            </p>
+                        </a>
+                        <a href="{{item.get_url}}" class="btn btn-warning giobtn">View Details
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    {% if list.has_other_pages %}
+    <ul class="pagination justify-content-end" style="margin:20px 0">
+
+        {% if list.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{list.previous_page_number}}">Previous</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        {% endif %}
+
+
+        {% for i in list.paginator.page_range %}
+            {% if list.number == i %}
+            <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            
+            {% endif %}
+        {% endfor %}
+
+        {% if list.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{list.next_page_number}}">Next</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        {% endif %}
+
+
+    </ul>
+    {% endif %}
+
+</div>
+{% endblock %}
