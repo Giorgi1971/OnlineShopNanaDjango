@@ -63,15 +63,31 @@
             <span class="badge badge-pill badge-warning notify">3</span>
           </a>
         </li>
+        {% if user.id is None %}
         <li class="nav-item active">
-          <a class="nav-link" href="#" style="padding-right: 0;">Login</a>
+          <a class="nav-link" href="{% url 'login' %}" style="padding-right: 0;">Login</a>
         </li>
         <li class="nav-item active">
           <span class="nav-link" style="padding-right: 2px; padding-left: 2px;">/</span>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#" style="padding-left: 0;">Register</a>
+          <a class="nav-link" href="{% url 'register' %}" style="padding-left: 0;">Register</a>
         </li>
+        {% else %}
+        <li class="nav-item active">
+          <span class="nav-link text-warning"style="padding-right: 0;">Welcome {{ user.first_name }}</span>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'dashboard' %}" style="padding-right: 0;">Dashboard</a>
+        </li>
+        <li class="nav-item active">
+          <span class="nav-link" style="padding-right: 2px; padding-left: 2px;">/</span>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'logout' %}" style="padding-left: 0;">Logout</a>
+        </li>
+
+        {% endif %}
         <li class="nav-item active" style="padding: 0 30px 0 40px;">
           <a class="nav-link" href="{% url 'cart' %}">
             <i class="fas fa-shopping-cart"></i>

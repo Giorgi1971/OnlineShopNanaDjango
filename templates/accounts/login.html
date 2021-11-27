@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    
+    <div class="d-flex flex-column bg-light p-2 text-white justify-content-center align-items-center h-200" style="height: 700px;" >
+        {% if request.GET.command == 'verification' %}
+        <div class="container mx-auto text-center alert alert-info" role="alert" style="max-width: 780px;">
+            Thanks, We send activation link in To your email: {{ request.GET.email }}!
+            <br>
+            <br>
+            Already verified? <a href="{% url 'login' %}">Login</a>
+        </div>
+    
+        {% else %}
+    
+
+<h3 class="text-dark">SIGN IN</h3>
+<div class="form-group pt-2">
+    <!-- <div class="form-control"> -->
+        {% include 'include/alert.html' %}
+
+        <!-- <input type="email" class="form-control text-center font-italic" placeholder="Email or Number" name="email"> -->
+    <!-- </div> -->
+</div>
+
+<form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+<div class="form-group pt-2">
+    <input type="email" class="form-control text-center font-italic" placeholder="Email or Number" name="email">
+</div>
+<div class="form-group pt-2 pb-2">
+    <input type="password" class="form-control text-center font-italic" placeholder="Password" name="pswd">
+</div>
+<p class="text-dark">
+      <a href="">Forgot Password?</a>
+</p>
+<button type="submit" class="btn btn-dark" style="width: 400px;">SIGN IN</button>
+</form>
+<br>
+<p class="text-dark">
+    Don't have account? <a href="{% url 'register' %}">Sign up</a>
+</p>
+
+{% endif %}
+</div>
+</div>
+
+
+<script>
+    setTimeout(function(){
+        $('#message').fadeOut('slow')
+    }, 4000)
+</script>
+
+{% endblock %}
