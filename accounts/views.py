@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib import auth
 from django.utils import http
+import accounts
 from accounts.models import Account
 from .forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
@@ -104,3 +105,71 @@ def activate(request, uidb64, token):
 @login_required(login_url='login')
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+
+def forgotPassword(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        if Account.objects.filter(email=email).exists():
+            user = Account.objects.get(email__exact=email)
+
+            # Rsest password email
+
+            current_site = get_current_site(request)
+            mail_subject = 'Reset your password'
+            message = render_to_string('accounts/resrt_password_email.html', {
+                'user':user,
+                'domain': current_site,
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':default_token_generator.make_token(user),
+            })
+            to_email = email
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+
+            messages.success(request, 'Password reset email has been send in your Email')
+            return redirect('login')
+
+        else:
+            messages.error(request, 'Account deos not exists')
+            return redirect('forgotPassword')
+
+
+    return render(request, 'accounts/forgotPassword.html')
+
+
+def reset_password_validate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = Account._default_manager.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        request.session['uid'] = uid
+        messages.success(request, 'Please reset your password')
+        return redirect('resetPassword')
+    else:
+        messages.error(request, 'Link Expired')
+        return redirect('login')
+
+
+def resetPassword(request):
+    if request.method == 'POST':
+        password = request.POST['pswd']
+        confirm_password =  request.POST['conf_pswd']
+
+        if password == confirm_password:
+            uid =  request.session.get('uid')
+            user = Account.objects.get(pk=uid)
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'Password reset Successfuly')
+            return redirect('login')
+
+        else:
+            messages.error(request, ' Password Dont Match')
+            return redirect(resetPassword)
+
+    else:
+        return render(request, 'accounts/resetPassword.html')
